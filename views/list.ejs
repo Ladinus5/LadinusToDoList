@@ -7,15 +7,15 @@
     </head>
     <body>
         <div><h1 class="todo-container"> <%= day %></h1></div>
-        <div class="todo-list">
-            <ul>
-            <li>Read Books</li>
-
-            <% for ( var i = 0; i<newListItems.length; i++) { %>
-                <li><%= newListItems[i] %></li>
-            <% } %>
-        </ul>
-        </div>
+        <form action="/delete" method="post">
+            <div class="todo-list">
+                <% newListItems.forEach(function(newList) { %>
+                <ul>
+                    <li><input name="checkeditem" type="checkbox" onchange="this.form.submit()" value="<%=newList._id%>"><%=newList.name%></li>
+                </ul>
+                    <% }) %>
+            </div>
+        </form>
         <form method="post" action="/">
             <input class="input-section" autocomplete="off" type="text" placeholder="Add" name="itemList" required>
             <button type="submit">+</button>
